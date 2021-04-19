@@ -11,6 +11,12 @@
       "pet": "cat",
       "src": "./assets/cat.jpg",
       "id": 2
+    },
+    {
+      "name": "BOBO",
+      "pet": "cat",
+      "src": "./assets/cat.jpg",
+      "id": 3
     }
   ]
 }

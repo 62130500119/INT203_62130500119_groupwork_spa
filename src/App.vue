@@ -81,6 +81,15 @@ export default {
     submitForm() {
       this.invalidNameInput = this.enteredName === '' ? true : false
       this.invalidPetInput = this.pet === null ? true : false
+      if (this.enteredName !== '' && this.pet !== null) {
+          this.addNewSurvey({
+            name: this.enteredName,
+            pet: this.pet,
+            src: this.pets.dog.name === this.pet ? this.pets.dog.src : this.pets.cat.src
+          })
+      }
+      this.enteredName = ''
+      this.pet = null
     },
 
     validateName() {
@@ -99,6 +108,25 @@ export default {
         console.log(`Could not get! ${error}`)
       }
     },
+    async addNewSurvey(newSurvey) {
+      try {
+        const res = await fetch(this.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: newSurvey.name,
+            pet: newSurvey.pet,
+            src: newSurvey.src
+          })
+        })
+        const data = await res.json()
+        this.petSurvey = [...this.petSurvey, data]
+      } catch (error) {
+        console.log(`Could not save! ${error}`)
+      }
+    }
   },
   async created() {
     this.petSurvey = await this.getPetSurvey()
