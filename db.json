@@ -3,13 +3,13 @@
     {
       "name": "AA",
       "pet": "cat",
-      "src": "./assets/cat.jpg",
+      "src": "../assets/cat.jpg",
       "id": 1
     },
     {
       "name": "BB",
       "pet": "dog",
-      "src": "./assets/dog.jpg",
+      "src": "../assets/dog.jpg",
       "id": 2
     }
   ]
