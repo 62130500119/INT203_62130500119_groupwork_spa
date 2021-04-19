@@ -34,16 +34,32 @@
                 <button class="btn">Submit</button>
                 </div>
             </form>
+            <div class="result">
+                <ul v-for="survey in petSurvey" :key="survey.id">
+                    <ResultBox :sname="survey.name">
+                        <template v-slot:img>
+                            <img :src="getImgSrc(survey)" class="result" />
+                        </template>
+                        <button  class="bg-blue-500 m-1"><img src="./assets/edit.svg" alt="" /></button>
+                        <button  class="bg-red-500 m-1"><img src="./assets/delete.svg" alt="" /></button>
+                    </ResultBox>
+                </ul>
+            </div>
         </div>
   </div>
 </template>
 
 <script>
+import ResultBox from './components/ResultBox.vue'
 
 export default {
   name: 'App',
+  components: {
+    ResultBox
+  },
   data() {
     return {
+      url: 'http://localhost:5000/petSurvey',
       enteredName: '',
       pet: null,
       pets:  {
@@ -71,13 +87,21 @@ export default {
       this.invalidNameInput = this.enteredName === '' ? true : false
     },
 
-    showData(oldSurvey) {
-      this.isEdit = true
-      this.editId = oldSurvey.id
-      this.enteredName = oldSurvey.name
-      this.pet = oldSurvey.pet
+    getImgSrc (survey) {
+        return survey.src == "./assets/dog.jpg" ? require('./assets/dog.jpg') : require('./assets/cat.jpg')
+    },
+    async getPetSurvey() {
+      try {
+        const res = await fetch(this.url)
+        const data = await res.json()
+        return data
+      } catch (error) {
+        console.log(`Could not get! ${error}`)
+      }
     },
   },
-
+  async created() {
+    this.petSurvey = await this.getPetSurvey()
+  }
 }
 </script>

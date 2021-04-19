@@ -39,3 +39,11 @@
 .inputs{
   @apply my-2 p-1 rounded-lg bg-sea flex justify-center;
 }
+
+.resultcontainer{
+  @apply flex mx-1 p-1 bg-coolgray-600 rounded-lg;
+}
+
+img.result{
+  @apply w-24 h-24 rounded-full mx-auto;
+}
