@@ -2,21 +2,15 @@
   "petSurvey": [
     {
       "name": "AA",
-      "pet": "dog",
-      "src": "./assets/dog.jpg",
+      "pet": "cat",
+      "src": "./assets/cat.jpg",
       "id": 1
     },
     {
       "name": "BB",
-      "pet": "cat",
-      "src": "./assets/cat.jpg",
+      "pet": "dog",
+      "src": "./assets/dog.jpg",
       "id": 2
-    },
-    {
-      "name": "BOBO",
-      "pet": "cat",
-      "src": "./assets/cat.jpg",
-      "id": 3
     }
   ]
 }
